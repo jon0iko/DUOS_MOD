@@ -34,6 +34,8 @@
 #include <errmsg.h>
 #include <types.h>
 #include <kmain.h>
+#include <unistd.h>
+#include <kunistd.h>
 
 static TCB_TypeDef task_list[MAX_TASKS];
 static uint16_t current_task_id = 1111;
