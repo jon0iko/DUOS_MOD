@@ -29,6 +29,11 @@
  */
  
 #include <stm32_startup.h>
+#include <syscall.h>
+#include <kstdio.h>
+
+
+extern uint32_t SVC_Handler_C(uint32_t *svc_args);
 const uint32_t STACK_START = (uint32_t)SRAM_END;
 uint32_t NVIC_VECTOR[] __attribute__((section (".isr_vector")))={
 	STACK_START,
@@ -164,25 +169,26 @@ void Reset_Handler(void){
 	kmain();
 }
 void Default_Handler(void){
+	kprintf("Default Handler: Infinite Looping...\n");
 	while(1);
 }
 //2. implement the fault handlers
 void HardFault_Handler(void)
 {
-//	printf("Exception : Hardfault\n");
+	kprintf("Exception : Hardfault\n");
 	while(1);
 }
 
 
 void MemManage_Handler(void)
 {
-//	printf("Exception : MemManage\n");
+	kprintf("Exception : MemManage\n");
 	while(1);
 }
 
 void BusFault_Handler(void)
 {
-//	printf("Exception : BusFault\n");
+	kprintf("Exception : BusFault\n");
 	while(1);
 }
 

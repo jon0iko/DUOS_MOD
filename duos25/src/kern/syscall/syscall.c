@@ -103,3 +103,38 @@ uint32_t sys_getpid(void)
     }
     return current_task_id; // Return current task ID if no valid task
 }
+
+uint32_t SVC_Handler_C(uint32_t *svc_args)
+{
+    // ARM Cortex-M4 exception stack frame:
+    // svc_args[0] = R0 (syscall number)
+    // svc_args[1] = R1 (arg1)
+    // svc_args[2] = R2 (arg2) 
+    // svc_args[3] = R3 (arg3)
+    // svc_args[4] = R12
+    // svc_args[5] = LR
+    // svc_args[6] = PC
+    // svc_args[7] = xPSR
+    
+    uint32_t syscall_id = svc_args[0];
+    uint32_t args[3] = {svc_args[1], svc_args[2], svc_args[3]};
+    
+    // Call the syscall dispatcher
+    uint32_t result = syscall_dispatch(syscall_id, args);
+    
+    // Store result in R0 of the stack frame for return to caller
+    svc_args[0] = result;
+    
+    return result;
+}
+
+uint32_t syscall_dispatch(uint32_t svc_number, uint32_t *args)
+{
+    switch (svc_number) {
+        case SYS_getpid:
+            return (uint32_t) sys_getpid();
+
+        default:
+            return (uint32_t)-1;
+    }
+}

@@ -34,6 +34,8 @@
 void syscall(uint16_t);
 void syscall_init(void);
 uint32_t syscall_execution(uint32_t syscall_num, uint32_t arg1, uint32_t arg2, uint32_t arg3);
+uint32_t SVC_Handler_C(uint32_t *svc_args);
+
 
 
 #endif

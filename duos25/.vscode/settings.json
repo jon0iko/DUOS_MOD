@@ -4,6 +4,7 @@
         "unistd.h": "c",
         "stdint.h": "c",
         "syscall_def.h": "c",
-        "syscall.h": "c"
+        "syscall.h": "c",
+        "kunistd.h": "c"
     }
 }
