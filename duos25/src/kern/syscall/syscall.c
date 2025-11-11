@@ -34,8 +34,12 @@
 #include <errmsg.h>
 #include <types.h>
 #include <kmain.h>
-#include <unistd.h>
+#include "unistd.h"
 #include <kunistd.h>
+#include <stdint.h>
+
+// Function declarations
+// uint32_t sys_getpid(void);
 
 static TCB_TypeDef task_list[MAX_TASKS];
 static uint16_t current_task_id = 1111;
@@ -49,26 +53,26 @@ uint32_t syscall_execution(uint32_t syscall_num, uint32_t arg1, uint32_t arg2, u
         case SYS_getpid:
             return (uint32_t)sys_getpid();
             
-        case SYS___time:
-            return (uint32_t)sys_time();
+        // case SYS___time:
+        //     return (uint32_t)sys_time();
             
-        case SYS_write:
-            return (uint32_t)sys_write((int)arg1, (const char*)arg2, (uint32_t)arg3);
+        // case SYS_write:
+        //     return (uint32_t)sys_write((int)arg1, (const char*)arg2, (uint32_t)arg3);
             
-        case SYS_read:
-            return (uint32_t)sys_read((int)arg1, (char*)arg2, (uint32_t)arg3);
+        // case SYS_read:
+        //     return (uint32_t)sys_read((int)arg1, (char*)arg2, (uint32_t)arg3);
             
-        case SYS_yield:
-            sys_yield();
-            return 0;
+        // case SYS_yield:
+        //     sys_yield();
+        //     return 0;
             
-        case SYS_reboot:
-            sys_reboot();
-            return 0; // Should not reach here
+        // case SYS_reboot:
+        //     sys_reboot();
+        //     return 0; // Should not reach here
             
-        case SYS__exit:
-            sys_exit();
-            return 0; // Should not reach here
+        // case SYS__exit:
+        //     sys_exit();
+        //     return 0; // Should not reach here
             
         default:
             return 0xFFFFFFFF; // Invalid syscall
