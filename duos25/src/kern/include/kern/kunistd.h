@@ -27,6 +27,7 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
+#include <stdint.h>
 
 #ifndef __KERN_UNISTD_H
 #define __KERN_UNISTD_H
@@ -34,5 +35,8 @@
 #define STDIN_FILENO  0      /* Standard input */
 #define STDOUT_FILENO 1      /* Standard output */
 #define STDERR_FILENO 2      /* Standard error */
+
+uint32_t sys_getpid(void);
+
 #endif /* KERN_UNISTD_H */
 
